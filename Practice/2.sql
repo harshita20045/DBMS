@@ -6,7 +6,7 @@ CREATE TABLE student(
      rollno INT PRIMARY KEY,
      name VARCHAR(20),
       marks INT NOT NULL,
-     grades INT,
+     grade INT,
      city VARCHAR(12)
      );
      CREATE TABLE dept(
