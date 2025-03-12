@@ -1,0 +1,295 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+15 rows in set (0.00 sec)
+
+mysql> create database assignment3;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| assignment3        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+16 rows in set (0.00 sec)
+
+mysql> use assignment3;
+Database changed
+mysql> create table employee( id INT PRIMARY KEY AUTO_INCREMENT,name VARCHAR(50),department VARCHAR(20),job_role VARCHAR(20),salary DOUBLE(10,2));
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> desc employee;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int          | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(50)  | YES  |     | NULL    |                |
+| department | varchar(20)  | YES  |     | NULL    |                |
+| job_role   | varchar(20)  | YES  |     | NULL    |                |
+| salary     | double(10,2) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee add column hire_date Date;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int          | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(50)  | YES  |     | NULL    |                |
+| department | varchar(20)  | YES  |     | NULL    |                |
+| job_role   | varchar(20)  | YES  |     | NULL    |                |
+| salary     | double(10,2) | YES  |     | NULL    |                |
+| hire_date  | date         | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("Alice","HR","Manager",6000,"2022-03-20");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("Bob","HR","Recruiter",4000,"2023-01-15");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("Charlie","IT","Developer",5000,"2022-07-25");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("David","IT","Developer",5500,"2021-12-05");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("Eve","IT","Tester",4500,"2023-06-10");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("Frank","IT","Tester",4800,"2023-09-12");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("Grace","Finance","Analyst",5200,"2021-11-18");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("Hank","Finance","Analyst",5300,"2022-04-30");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("Ivy","Finance","Manager",7000,"2023-08-14");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee (name,department,job_role,salary,hire_date)VALUES("Jack","HR","Recruiter",4200,"2022-10-05");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----+---------+------------+-----------+---------+------------+
+| id | name    | department | job_role  | salary  | hire_date  |
++----+---------+------------+-----------+---------+------------+
+|  1 | Alice   | HR         | Manager   | 6000.00 | 2022-03-20 |
+|  2 | Bob     | HR         | Recruiter | 4000.00 | 2023-01-15 |
+|  3 | Charlie | IT         | Developer | 5000.00 | 2022-07-25 |
+|  4 | David   | IT         | Developer | 5500.00 | 2021-12-05 |
+|  5 | Eve     | IT         | Tester    | 4500.00 | 2023-06-10 |
+|  6 | Frank   | IT         | Tester    | 4800.00 | 2023-09-12 |
+|  7 | Grace   | Finance    | Analyst   | 5200.00 | 2021-11-18 |
+|  8 | Hank    | Finance    | Analyst   | 5300.00 | 2022-04-30 |
+|  9 | Ivy     | Finance    | Manager   | 7000.00 | 2023-08-14 |
+| 10 | Jack    | HR         | Recruiter | 4200.00 | 2022-10-05 |
++----+---------+------------+-----------+---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select department,count(*) from employee as TOTAL group by department;
++------------+----------+
+| department | count(*) |
++------------+----------+
+| HR         |        3 |
+| IT         |        4 |
+| Finance    |        3 |
++------------+----------+
+3 rows in set (0.02 sec)
+
+mysql> select job_role,avg(salary) from employee as TOTAL group by job_role;
++-----------+-------------+
+| job_role  | avg(salary) |
++-----------+-------------+
+| Manager   | 6500.000000 |
+| Recruiter | 4100.000000 |
+| Developer | 5250.000000 |
+| Tester    | 4650.000000 |
+| Analyst   | 5250.000000 |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select department,max(salary) from employee as TOTAL where department="IT";
++------------+-------------+
+| department | max(salary) |
++------------+-------------+
+| IT         |     5500.00 |
++------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from employee as TOTAL ;
++-------------+
+| min(salary) |
++-------------+
+|     4000.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from employee as COUNT where hire_date>"2023-01-01";
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+
+
+mysql> select department,sum(salary) from employee as TOTAL group by department;
++------------+-------------+
+| department | sum(salary) |
++------------+-------------+
+| HR         |    14200.00 |
+| IT         |    19800.00 |
+| Finance    |    17500.00 |
++------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select job_role,max(salary) from employee as TOTAL group by job_role;
++-----------+-------------+
+| job_role  | max(salary) |
++-----------+-------------+
+| Manager   |     7000.00 |
+| Recruiter |     4200.00 |
+| Developer |     5500.00 |
+| Tester    |     4800.00 |
+| Analyst   |     5300.00 |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select job_role,sum(salary) from employee as TOTAL group by job_role having max(salary);
++-----------+-------------+
+| job_role  | sum(salary) |
++-----------+-------------+
+| Manager   |    13000.00 |
+| Recruiter |     8200.00 |
+| Developer |    10500.00 |
+| Tester    |     9300.00 |
+| Analyst   |    10500.00 |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select job_role,max(salary) from employee as TOTAL group by job_role having sum(salary);
++-----------+-------------+
+| job_role  | max(salary) |
++-----------+-------------+
+| Manager   |     7000.00 |
+| Recruiter |     4200.00 |
+| Developer |     5500.00 |
+| Tester    |     4800.00 |
+| Analyst   |     5300.00 |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select job_role,sum(salary) from employee group by job_role;
++-----------+-------------+
+| job_role  | sum(salary) |
++-----------+-------------+
+| Manager   |    13000.00 |
+| Recruiter |     8200.00 |
+| Developer |    10500.00 |
+| Tester    |     9300.00 |
+| Analyst   |    10500.00 |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select job_role,sum(salary)  as TOTAL from employee group by job_role order by TOTAL desc ;
++-----------+----------+
+| job_role  | TOTAL    |
++-----------+----------+
+| Manager   | 13000.00 |
+| Developer | 10500.00 |
+| Analyst   | 10500.00 |
+| Tester    |  9300.00 |
+| Recruiter |  8200.00 |
++-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select avg(salary)  as Average from employee where hire_date>'2022-12-31';
++-------------+
+| Average     |
++-------------+
+| 5075.000000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select department,sum(salary)  as Total from employee group by department having Total>10000;
++------------+----------+
+| department | Total    |
++------------+----------+
+| HR         | 14200.00 |
+| IT         | 19800.00 |
+| Finance    | 17500.00 |
++------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select department,sum(salary)  as Total from employee group by department having Total>100000;
+Empty set (0.00 sec)
+
+mysql> select department,sum(salary)  as Total from employee group by department having Total>14200;
++------------+----------+
+| department | Total    |
++------------+----------+
+| IT         | 19800.00 |
+| Finance    | 17500.00 |
++------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select department,count(*)  as Total from employee group by department order by Total desc;
++------------+-------+
+| department | Total |
++------------+-------+
+| IT         |     4 |
+| HR         |     3 |
+| Finance    |     3 |
++------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select department,count(*)  as Total from employee group by department order by Total desc LIMIT 1;
++------------+-------+
+| department | Total |
++------------+-------+
+| IT         |     4 |
++------------+-------+
+1 row in set (0.00 sec)
+
+mysql>

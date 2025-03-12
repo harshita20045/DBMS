@@ -1,0 +1,72 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| assignment3        |
+| assignment4        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+17 rows in set (0.00 sec)
+
+mysql> use assignment4;
+Database changed
+mysql> create table Patients(patientId INT PRIMARY KEY,patientName VARCHAR(50) NOT NULL,age INT check(age BETWEEN 1 AND 100), admissionStatus VARCHAR(15) check(admissionStatus IN('Admitted','Discharged')) DEFAULT 'Admission',treatementCost DECIMAL(10,2) check (treatmentCost>=1000));
+ERROR 3813 (HY000): Column check constraint 'patients_chk_3' references other column.
+mysql> create table Patients(patientId INT PRIMARY KEY,patientName VARCHAR(50) NOT NULL,age INT check(age BETWEEN 1 AND 100), admissionStatus VARCHAR(15) check(admissionStatus IN('Admitted','Discharged')) DEFAULT 'Admission',treatementCost DECIMAL(10,2) check(treatmentCost>=1000));
+ERROR 3813 (HY000): Column check constraint 'patients_chk_3' references other column.
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment4 |
++-----------------------+
+| students              |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> create table Patients(patientId INT PRIMARY KEY,patientName VARCHAR(50) NOT NULL,age INT check(age BETWEEN 1 AND 100), admissionStatus VARCHAR(15) Default 'Admitted' check(admissionStatus IN('Admitted','Discharged')) ,treatementCost DECIMAL(10,2) check(treatmentCost>=1000));
+ERROR 3813 (HY000): Column check constraint 'patients_chk_3' references other column.
+mysql> create table Patients(patientId INT PRIMARY KEY,patientName VARCHAR(50) NOT NULL,age INT check(age BETWEEN 1 AND 100), admissionStatus VARCHAR(15) Default 'Admitted' check(admissionStatus IN('Admitted','Discharged')) ,treatementCost DECIMAL(10,2) check(treatementCost>=1000));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment4 |
++-----------------------+
+| patients              |
+| students              |
++-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Patients(patientId ,patientName,age,admissionStatus,treatementCost)VALUES(201 , 'Harshita',25,'Admitted',5000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Patients(patientId ,patientName,age,admissionStatus,treatementCost)VALUES(202 , 'Naina',105,'Admitted',8000);
+ERROR 3819 (HY000): Check constraint 'patients_chk_1' is violated.
+mysql> insert into Patients(patientId ,patientName,age,treatementCost)VALUES(203 , 'Karan',40,1200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from patients;
++-----------+-------------+------+-----------------+----------------+
+| patientId | patientName | age  | admissionStatus | treatementCost |
++-----------+-------------+------+-----------------+----------------+
+|       201 | Harshita    |   25 | Admitted        |        5000.00 |
+|       203 | Karan       |   40 | Admitted        |        1200.00 |
++-----------+-------------+------+-----------------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Patients(patientId ,patientName,age,admissionStatus,treatementCost)VALUES(204,'Mihir',30,'Discharged',700);
+ERROR 3819 (HY000): Check constraint 'patients_chk_3' is violated.
+mysql>

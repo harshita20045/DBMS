@@ -1,0 +1,73 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| assignment3        |
+| assignment4        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+17 rows in set (0.00 sec)
+
+mysql> use assignment4;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment4 |
++-----------------------+
+| events                |
+| gymmembers            |
+| patients              |
+| students              |
++-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> desc events;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| eventId   | int         | NO   | PRI | NULL    | auto_increment |
+| eventName | varchar(50) | YES  |     | NULL    |                |
+| eventDate | date        | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.03 sec)
+
+mysql> drop table events;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table events(eventId int PRIMARY KEY AUTO_INCREMENT, eventName VARCHAR(50),eventDate Date check(eventDate>'2025-03-12'));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> insert into events(eventId ,eventName,eventDate) VALUES(1,"Holi",'2025-04-23');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into events(eventName,eventDate) VALUES("Garba",'2025-03-30');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into events(eventName,eventDate) VALUES("Garba",'2025-07-30');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select *from events;
++---------+-----------+------------+
+| eventId | eventName | eventDate  |
++---------+-----------+------------+
+|       1 | Holi      | 2025-04-23 |
+|       2 | Garba     | 2025-03-30 |
+|       3 | Garba     | 2025-07-30 |
++---------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql>

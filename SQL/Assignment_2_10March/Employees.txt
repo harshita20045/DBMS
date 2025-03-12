@@ -1,0 +1,259 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+14 rows in set (0.00 sec)
+
+mysql> use assignment1;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| customers             |
+| employee              |
+| members               |
+| orders                |
+| products              |
+| students              |
++-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----------+---------------+-----------+-------+--------------+
+| order_id | customer_name | food_item | price | order_status |
++----------+---------------+-----------+-------+--------------+
+|        1 | Sizuka        | Pizza     | 13.20 | Pending      |
+|        2 | Nika          | Burger    |  8.00 | Processing   |
+|        3 | Mika          | Pizza     | 16.50 | Pending      |
+|        4 | Shikha        | Pasta     | 10.00 | Delivered    |
+|        5 | David Wilson  | Sandwich  |  6.00 | Delivered    |
++----------+---------------+-----------+-------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> update orders set price=price+(price*(10/100)) where food_item="pizza";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from orders;
++----------+---------------+-----------+-------+--------------+
+| order_id | customer_name | food_item | price | order_status |
++----------+---------------+-----------+-------+--------------+
+|        1 | Sizuka        | Pizza     | 14.52 | Pending      |
+|        2 | Nika          | Burger    |  8.00 | Processing   |
+|        3 | Mika          | Pizza     | 18.15 | Pending      |
+|        4 | Shikha        | Pasta     | 10.00 | Delivered    |
+|        5 | David Wilson  | Sandwich  |  6.00 | Delivered    |
++----------+---------------+-----------+-------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> use assignment2;
+ERROR 1049 (42000): Unknown database 'assignment2'
+mysql> create database assignment2;
+Query OK, 1 row affected (0.29 sec)
+
+mysql> use assignment2;
+Database changed
+mysql> create table employees(id int PRIMARY KEY AUTO_INCREMENT,name VARCHAR(50),department VARCHAR(50),email VARCHAR(100),phone VARCHAR(15));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> desc employees;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int          | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(50)  | YES  |     | NULL    |                |
+| department | varchar(50)  | YES  |     | NULL    |                |
+| email      | varchar(100) | YES  |     | NULL    |                |
+| phone      | varchar(15)  | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> insert into employees values("asha","tech","abc@gmail.com",75349875897)("nisha","hr","ghjgyjd@.com",5362548123)("naina","it","rger@gmail.com");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '("nisha","hr","ghjgyjd@.com",5362548123)("naina","it","rger@gmail.com")' at line 1
+mysql> insert into employees values("asha","tech","abc@gmail.com","75349875897")("nisha","hr","ghjgyjd@.com","5362548123")("naina","it","rger@gmail.com","77867857");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '("nisha","hr","ghjgyjd@.com","5362548123")("naina","it","rger@gmail.com","778678' at line 1
+mysql> insert into employees values("asha","tech","abc@gmail.com","75349875897")("nisha","hr","ghjgyjd@.com","5362548123")("naina","it","rger@gmail.com","77867857");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '("nisha","hr","ghjgyjd@.com","5362548123")("naina","it","rger@gmail.com","778678' at line 1
+mysql> INSERT INTO employees (name, department, email, phone)
+    -> VALUES
+    -> ("Asha", "Tech", "abc@gmail.com", "75349875897"),
+    -> ("Nisha", "HR", "ghjgyjd@.com", "5362548123"),
+    -> ("Naina", "IT", "rger@gmail.com", "77867857");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> select * from students;
+ERROR 1146 (42S02): Table 'assignment2.students' doesn't exist
+mysql> select * from employees;
++----+-------+------------+----------------+-------------+
+| id | name  | department | email          | phone       |
++----+-------+------------+----------------+-------------+
+|  1 | Asha  | Tech       | abc@gmail.com  | 75349875897 |
+|  2 | Nisha | HR         | ghjgyjd@.com   | 5362548123  |
+|  3 | Naina | IT         | rger@gmail.com | 77867857    |
++----+-------+------------+----------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO employees (name, department, email, phone) VALUES("Harshita","tech","gh@gmail.com","3467678123")
+    -> ,("Ravi","it","ravi@gmail.com","6437676767");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee where name LIKE 'a%';
+ERROR 1146 (42S02): Table 'assignment2.employee' doesn't exist
+mysql> select * from employees where name LIKE 'a%';
++----+------+------------+---------------+-------------+
+| id | name | department | email         | phone       |
++----+------+------------+---------------+-------------+
+|  1 | Asha | Tech       | abc@gmail.com | 75349875897 |
++----+------+------------+---------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO employees (name, department, email, phone) VALUES("Sumit","tech","sumit@ghj","5436546"),("Animesh","it","ani@gmail.com","53454123"),("Pankaj","hr","degwrg@gmail.com","3657634785"),("Saheer","Tech","saheer@gmail.com","3243546123"),("Varsha","it","df@fg",85904695);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees;
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  2 | Nisha    | HR         | ghjgyjd@.com     | 5362548123  |
+|  3 | Naina    | IT         | rger@gmail.com   | 77867857    |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  5 | Ravi     | it         | ravi@gmail.com   | 6437676767  |
+|  6 | Sumit    | tech       | sumit@ghj        | 5436546     |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123    |
+|  8 | Pankaj   | hr         | degwrg@gmail.com | 3657634785  |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
+| 10 | Varsha   | it         | df@fg            | 85904695    |
++----+----------+------------+------------------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> select *from employees where name LIKE 'a%';
++----+---------+------------+---------------+-------------+
+| id | name    | department | email         | phone       |
++----+---------+------------+---------------+-------------+
+|  1 | Asha    | Tech       | abc@gmail.com | 75349875897 |
+|  7 | Animesh | it         | ani@gmail.com | 53454123    |
++----+---------+------------+---------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select *from employees where name LIKE '%gmail%';
+Empty set (0.00 sec)
+
+mysql> select *from employees where email LIKE '%gmail%';
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  3 | Naina    | IT         | rger@gmail.com   | 77867857    |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  5 | Ravi     | it         | ravi@gmail.com   | 6437676767  |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123    |
+|  8 | Pankaj   | hr         | degwrg@gmail.com | 3657634785  |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
++----+----------+------------+------------------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> select *from employees where phone LIKE '%123';
++----+----------+------------+------------------+------------+
+| id | name     | department | email            | phone      |
++----+----------+------------+------------------+------------+
+|  2 | Nisha    | HR         | ghjgyjd@.com     | 5362548123 |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123 |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123   |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123 |
++----+----------+------------+------------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from employees where department LIKE '%tech%';
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  6 | Sumit    | tech       | sumit@ghj        | 5436546     |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
++----+----------+------------+------------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from employees where department LIKE '_____';
+Empty set (0.00 sec)
+
+mysql> select *from employees where name LIKE '_____';
++----+-------+------------+----------------+------------+
+| id | name  | department | email          | phone      |
++----+-------+------------+----------------+------------+
+|  2 | Nisha | HR         | ghjgyjd@.com   | 5362548123 |
+|  3 | Naina | IT         | rger@gmail.com | 77867857   |
+|  6 | Sumit | tech       | sumit@ghj      | 5436546    |
++----+-------+------------+----------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from employees where name LIKE '_n';
+Empty set (0.00 sec)
+
+mysql> select * from employee where name LIKE '_n';
+ERROR 1146 (42S02): Table 'assignment2.employee' doesn't exist
+mysql> select * from employees where name LIKE '_n';
+Empty set (0.00 sec)
+
+mysql> select * from employees where name LIKE '_n%';
++----+---------+------------+---------------+----------+
+| id | name    | department | email         | phone    |
++----+---------+------------+---------------+----------+
+|  7 | Animesh | it         | ani@gmail.com | 53454123 |
++----+---------+------------+---------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from employees where name LIKE '%com';
+Empty set (0.00 sec)
+
+mysql> select * from employees where email LIKE '%com';
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  2 | Nisha    | HR         | ghjgyjd@.com     | 5362548123  |
+|  3 | Naina    | IT         | rger@gmail.com   | 77867857    |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  5 | Ravi     | it         | ravi@gmail.com   | 6437676767  |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123    |
+|  8 | Pankaj   | hr         | degwrg@gmail.com | 3657634785  |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
++----+----------+------------+------------------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> select *from employees where phone LIKE '__7%';
+Empty set (0.00 sec)
+
+mysql> INSERT INTO employees (name, department, email, phone) VALUES("Anant","tech","anant@ghj","5476546");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from employees where phone LIKE '__7%';
++----+-------+------------+-----------+---------+
+| id | name  | department | email     | phone   |
++----+-------+------------+-----------+---------+
+| 11 | Anant | tech       | anant@ghj | 5476546 |
++----+-------+------------+-----------+---------+
+1 row in set (0.00 sec)
+
+mysql>

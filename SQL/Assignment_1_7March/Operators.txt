@@ -1,0 +1,124 @@
+1. Arithmetic Operators
+Used to perform mathematical operations.
+
+Operator	Description	Example	Output
++	Addition	SELECT 10 + 5 AS Result;	15
+-	Subtraction	SELECT 10 - 5 AS Result;	5
+*	Multiplication	SELECT 10 * 5 AS Result;	50
+/	Division	SELECT 10 / 5 AS Result;	2
+%	Modulus (Remainder)	SELECT 10 % 3 AS Result;	1
+
+
+Example;
+
+
+
+
+2. SQL Comparison Operators:-
+
+SQL Equal Operator (=)
+SQL Not Equal Operator (!=)
+SQL Greater Than Operator (>)
+SQL Greater Than Equals to Operator (>=)
+SQL Less Than Operator (<)\
+SQL Less Than Equals to Operator (<=)
+
+Operator	Description	Example
+=	Equal to	SELECT * FROM students WHERE age = 18;
+!= or <>	Not equal to	SELECT * FROM students WHERE age != 18;
+>	Greater than	SELECT * FROM students WHERE marks > 50;
+<	Less than	SELECT * FROM students WHERE marks < 50;
+>=	Greater than or equal to	SELECT * FROM students WHERE marks >= 50;
+<=	Less than or equal to	SELECT * FROM students WHERE marks <= 50;
+
+
+3. SQL Logical Operators
+Logical Operators in SQL are used to combine or manipulate conditions in SQL queries to retrieve or manipulate data based on specified criteria..
+
+Operator	Description
+AND	
+Logical AND compares two Booleans as expressions and returns true when both expressions are true.
+
+OR	
+Logical OR compares two Booleans as expressions and returns true when one of the expressions is true.
+
+NOT	
+Not takes a single Boolean as an argument and change its value from false to true or from true to false.
+
+
+Operator	Description	Example
+AND	Returns true if both conditions are met	SELECT * FROM students WHERE age > 18 AND marks > 50;
+OR	Returns true if at least one condition is met	SELECT * FROM students WHERE age > 18 OR marks > 50;
+NOT	Reverses the condition	SELECT * FROM students WHERE NOT age = 18;
+
+
+4. SQL Special Operators
+SQL also provides several special operators that serve specific functions such as filtering data based on a range, checking for existence, and comparing sets of values.
+
+Operators              	Description 
+1. ALL Operator
+Description: Used to compare a value with all values returned by a subquery.
+Example: Retrieve students who have marks greater than all students in class 10.
+sql
+Copy
+Edit
+SELECT * FROM students 
+WHERE marks > ALL (SELECT marks FROM students WHERE class = 10);
+Output: Returns students who have marks higher than all students in class 10.
+
+2. ANY Operator
+Description: Compares a value to any value returned by a subquery and returns TRUE if at least one comparison is true.
+Example: Retrieve students who have marks greater than any student in class 10.
+sql
+Copy
+Edit
+SELECT * FROM students 
+WHERE marks > ANY (SELECT marks FROM students WHERE class = 10);
+Output: Returns students who have marks greater than the lowest mark in class 10.
+
+3. BETWEEN Operator
+Description: Used to filter data within a specific range (including the boundary values).
+Example: Retrieve students with marks between 50 and 80.
+sql
+Copy
+Edit
+SELECT * FROM students WHERE marks BETWEEN 50 AND 80;
+Output: Returns students with marks between 50 and 80.
+
+4. IN Operator
+Description: Checks if a value exists in a list of values.
+Example: Retrieve students who are 18, 19, or 20 years old.
+sql
+Copy
+Edit
+SELECT * FROM students WHERE age IN (18, 19, 20);
+Output: Returns students whose age is 18, 19, or 20.
+
+5. EXISTS Operator
+Description: Checks whether a subquery returns any rows.
+Example: Retrieve students who have paid their fees.
+sql
+Copy
+Edit
+SELECT * FROM students 
+WHERE EXISTS (SELECT * FROM fees WHERE fees.paid = 'Yes');
+Output: Returns students who have paid their fees.
+
+6. SOME Operator
+Description: Works like ANY and returns TRUE if the condition matches at least one value in the subquery.
+Example: Retrieve employees whose salary is greater than some employees in the "Sales" department.
+sql
+Copy
+Edit
+SELECT * FROM employees 
+WHERE salary > SOME (SELECT salary FROM employees WHERE department = 'Sales');
+Output: Returns employees whose salary is higher than at least one employee in the "Sales" department.
+
+7. UNIQUE Operator
+Description: Ensures that only unique values are retrieved.
+Example: Retrieve unique job positions from the employee table.
+sql
+Copy
+Edit
+SELECT UNIQUE(job_title) FROM employees;
+Output: Returns a list of unique job titles.

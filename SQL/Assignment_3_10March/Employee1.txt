@@ -1,0 +1,134 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| assignment3        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+16 rows in set (0.00 sec)
+
+mysql> use assignment3;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment3 |
++-----------------------+
+| employee              |
+| students              |
++-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> desc employee;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int          | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(50)  | YES  |     | NULL    |                |
+| department | varchar(20)  | YES  |     | NULL    |                |
+| job_role   | varchar(20)  | YES  |     | NULL    |                |
+| salary     | double(10,2) | YES  |     | NULL    |                |
+| hire_date  | date         | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+---------+------------+-----------+---------+------------+
+| id | name    | department | job_role  | salary  | hire_date  |
++----+---------+------------+-----------+---------+------------+
+|  1 | Alice   | HR         | Manager   | 6000.00 | 2022-03-20 |
+|  2 | Bob     | HR         | Recruiter | 4000.00 | 2023-01-15 |
+|  3 | Charlie | IT         | Developer | 5000.00 | 2022-07-25 |
+|  4 | David   | IT         | Developer | 5500.00 | 2021-12-05 |
+|  5 | Eve     | IT         | Tester    | 4500.00 | 2023-06-10 |
+|  6 | Frank   | IT         | Tester    | 4800.00 | 2023-09-12 |
+|  7 | Grace   | Finance    | Analyst   | 5200.00 | 2021-11-18 |
+|  8 | Hank    | Finance    | Analyst   | 5300.00 | 2022-04-30 |
+|  9 | Ivy     | Finance    | Manager   | 7000.00 | 2023-08-14 |
+| 10 | Jack    | HR         | Recruiter | 4200.00 | 2022-10-05 |
++----+---------+------------+-----------+---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select department,count(*) as COUNT from employee group by department having COUNT>2;
++------------+-------+
+| department | COUNT |
++------------+-------+
+| HR         |     3 |
+| IT         |     4 |
+| Finance    |     3 |
++------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select department,count(*) as COUNT from employee group by department having COUNT>3;
++------------+-------+
+| department | COUNT |
++------------+-------+
+| IT         |     4 |
++------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select department,sum(salary) as TOTAL from employee group by department order by TOTAL sesc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sesc' at line 1
+mysql> select department,sum(salary) as TOTAL from employee group by department order by TOTAL desc;
++------------+----------+
+| department | TOTAL    |
++------------+----------+
+| IT         | 19800.00 |
+| Finance    | 17500.00 |
+| HR         | 14200.00 |
++------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select job_role,sum(salary) as TOTAL from employee group by job_role having TOTAL>10000 order by desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc' at line 1
+mysql> select job_role,sum(salary) as TOTAL from employee group by job_role having TOTAL>10000 order by TOTAL desc;
++-----------+----------+
+| job_role  | TOTAL    |
++-----------+----------+
+| Manager   | 13000.00 |
+| Developer | 10500.00 |
+| Analyst   | 10500.00 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select job_role,avg(salary) as AVG from employee where date>'2022-12-31' group by job_role having AVG>4500;
+ERROR 1054 (42S22): Unknown column 'date' in 'where clause'
+mysql> select job_role,avg(salary) as AVG from employee where exam_date>'2022-12-31' group by job_role having AVG>4500;
+ERROR 1054 (42S22): Unknown column 'exam_date' in 'where clause'
+mysql> select job_role,avg(salary) as AVG from employee where hire_date>'2022-12-31' group by job_role having AVG>4500;
++----------+-------------+
+| job_role | AVG         |
++----------+-------------+
+| Tester   | 4650.000000 |
+| Manager  | 7000.000000 |
++----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select department,sum(salary)  as SUM group by department having SUM>10000 ORDER BY SUM desc;
+ERROR 1054 (42S22): Unknown column 'department' in 'field list'
+mysql> select department,sum(salary)  as SUM  from students group by department having SUM>10000 ORDER BY SUM desc;
+ERROR 1054 (42S22): Unknown column 'department' in 'field list'
+mysql> select department,sum(salary)  as SUM  from employee group by department having SUM>10000 ORDER BY SUM desc;
++------------+----------+
+| department | SUM      |
++------------+----------+
+| IT         | 19800.00 |
+| Finance    | 17500.00 |
+| HR         | 14200.00 |
++------------+----------+
+3 rows in set (0.00 sec)
+
+mysql>

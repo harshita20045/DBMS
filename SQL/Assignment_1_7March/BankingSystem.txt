@@ -1,0 +1,54 @@
+mysql> create table customers (    customer_id int,    name VARCHAR(50),    balance Float,    account_type VARCHAR(50));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO customers VALUES(1, 'Vedika', 30000, 'Savings'),(2, 'Aashita', 70000, 'Current'),(3, 'Surbhi', 40000, 'Savings'),(4, 'Swati', 50000, 'Current'),(5, 'Neha', 200000, 'Savings');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from customers;
++-------------+---------+---------+--------------+
+| customer_id | name    | balance | account_type |
++-------------+---------+---------+--------------+
+|           1 | Vedika  |   30000 | Savings      |
+|           2 | Aashita |   70000 | Current      |
+|           3 | Surbhi  |   40000 | Savings      |
+|           4 | Swati   |   50000 | Current      |
+|           5 | Neha    |  200000 | Savings      |
++-------------+---------+---------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> update products set balance=balance+(balance*(5/100)) where account_type='Savings';
+ERROR 1054 (42S22): Unknown column 'account_type' in 'where clause'
+mysql> update customers set balance=balance+(balance*(5/100)) where account_type='Savings';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from customers;
++-------------+---------+---------+--------------+
+| customer_id | name    | balance | account_type |
++-------------+---------+---------+--------------+
+|           1 | Vedika  |   31500 | Savings      |
+|           2 | Aashita |   70000 | Current      |
+|           3 | Surbhi  |   42000 | Savings      |
+|           4 | Swati   |   50000 | Current      |
+|           5 | Neha    |  210000 | Savings      |
++-------------+---------+---------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> update customers set balance=balance-100 where balance>5000;
+Query OK, 5 rows affected (0.01 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from customers;
++-------------+---------+---------+--------------+
+| customer_id | name    | balance | account_type |
++-------------+---------+---------+--------------+
+|           1 | Vedika  |   31400 | Savings      |
+|           2 | Aashita |   69900 | Current      |
+|           3 | Surbhi  |   41900 | Savings      |
+|           4 | Swati   |   49900 | Current      |
+|           5 | Neha    |  209900 | Savings      |
++-------------+---------+---------+--------------+
+5 rows in set (0.00 sec)
+
+mysql>

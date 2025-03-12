@@ -1,0 +1,240 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+15 rows in set (0.03 sec)
+
+mysql> use assignment2;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment2 |
++-----------------------+
+| employees             |
++-----------------------+
+1 row in set (0.03 sec)
+
+mysql> select *from employees;
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  2 | Nisha    | HR         | ghjgyjd@.com     | 5362548123  |
+|  3 | Naina    | IT         | rger@gmail.com   | 77867857    |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  5 | Ravi     | it         | ravi@gmail.com   | 6437676767  |
+|  6 | Sumit    | tech       | sumit@ghj        | 5436546     |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123    |
+|  8 | Pankaj   | hr         | degwrg@gmail.com | 3657634785  |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
+| 10 | Varsha   | it         | df@fg            | 85904695    |
+| 11 | Anant    | tech       | anant@ghj        | 5476546     |
+| 12 | Jayash   | tech       | jayash@ghj       | 5476546123  |
+| 13 | Karan    | hr         | jayash@yahoo.com | 7476546123  |
+| 14 | Mihir    | hr         | mihir@yahoo.com  | 95676546123 |
+| 15 | Siya     | hr         | siya@outlook     | 95676546123 |
+| 16 | Sana     |       Sales     | fdghf@ergt       | 95677435789 |
++----+----------+------------+------------------+-------------+
+16 rows in set (0.03 sec)
+
+mysql> update employees set department="Sales" where id=16;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from employees;
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  2 | Nisha    | HR         | ghjgyjd@.com     | 5362548123  |
+|  3 | Naina    | IT         | rger@gmail.com   | 77867857    |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  5 | Ravi     | it         | ravi@gmail.com   | 6437676767  |
+|  6 | Sumit    | tech       | sumit@ghj        | 5436546     |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123    |
+|  8 | Pankaj   | hr         | degwrg@gmail.com | 3657634785  |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
+| 10 | Varsha   | it         | df@fg            | 85904695    |
+| 11 | Anant    | tech       | anant@ghj        | 5476546     |
+| 12 | Jayash   | tech       | jayash@ghj       | 5476546123  |
+| 13 | Karan    | hr         | jayash@yahoo.com | 7476546123  |
+| 14 | Mihir    | hr         | mihir@yahoo.com  | 95676546123 |
+| 15 | Siya     | hr         | siya@outlook     | 95676546123 |
+| 16 | Sana     | Sales      | fdghf@ergt       | 95677435789 |
++----+----------+------------+------------------+-------------+
+16 rows in set (0.00 sec)
+
+mysql> select *from employees name NOT LIKE 'j%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NOT LIKE 'j%'' at line 1
+mysql> select *from employees where name NOT LIKE '%';
+Empty set (0.01 sec)
+
+mysql> select *from employees where name NOT LIKE 'j%';
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  2 | Nisha    | HR         | ghjgyjd@.com     | 5362548123  |
+|  3 | Naina    | IT         | rger@gmail.com   | 77867857    |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  5 | Ravi     | it         | ravi@gmail.com   | 6437676767  |
+|  6 | Sumit    | tech       | sumit@ghj        | 5436546     |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123    |
+|  8 | Pankaj   | hr         | degwrg@gmail.com | 3657634785  |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
+| 10 | Varsha   | it         | df@fg            | 85904695    |
+| 11 | Anant    | tech       | anant@ghj        | 5476546     |
+| 13 | Karan    | hr         | jayash@yahoo.com | 7476546123  |
+| 14 | Mihir    | hr         | mihir@yahoo.com  | 95676546123 |
+| 15 | Siya     | hr         | siya@outlook     | 95676546123 |
+| 16 | Sana     | Sales      | fdghf@ergt       | 95677435789 |
++----+----------+------------+------------------+-------------+
+15 rows in set (0.00 sec)
+
+mysql> select *from employees where department!=hr;
+ERROR 1054 (42S22): Unknown column 'hr' in 'where clause'
+mysql> select *from employees where department!="hr";
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  3 | Naina    | IT         | rger@gmail.com   | 77867857    |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  5 | Ravi     | it         | ravi@gmail.com   | 6437676767  |
+|  6 | Sumit    | tech       | sumit@ghj        | 5436546     |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123    |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
+| 10 | Varsha   | it         | df@fg            | 85904695    |
+| 11 | Anant    | tech       | anant@ghj        | 5476546     |
+| 12 | Jayash   | tech       | jayash@ghj       | 5476546123  |
+| 16 | Sana     | Sales      | fdghf@ergt       | 95677435789 |
++----+----------+------------+------------------+-------------+
+11 rows in set (0.00 sec)
+
+mysql> select *from employees where email NOT LIKE '%yahoo%';
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  2 | Nisha    | HR         | ghjgyjd@.com     | 5362548123  |
+|  3 | Naina    | IT         | rger@gmail.com   | 77867857    |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  5 | Ravi     | it         | ravi@gmail.com   | 6437676767  |
+|  6 | Sumit    | tech       | sumit@ghj        | 5436546     |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123    |
+|  8 | Pankaj   | hr         | degwrg@gmail.com | 3657634785  |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
+| 10 | Varsha   | it         | df@fg            | 85904695    |
+| 11 | Anant    | tech       | anant@ghj        | 5476546     |
+| 12 | Jayash   | tech       | jayash@ghj       | 5476546123  |
+| 15 | Siya     | hr         | siya@outlook     | 95676546123 |
+| 16 | Sana     | Sales      | fdghf@ergt       | 95677435789 |
++----+----------+------------+------------------+-------------+
+14 rows in set (0.00 sec)
+
+mysql> select *from employees where phone NOT LIKE '9%';
++----+----------+------------+------------------+-------------+
+| id | name     | department | email            | phone       |
++----+----------+------------+------------------+-------------+
+|  1 | Asha     | Tech       | abc@gmail.com    | 75349875897 |
+|  2 | Nisha    | HR         | ghjgyjd@.com     | 5362548123  |
+|  3 | Naina    | IT         | rger@gmail.com   | 77867857    |
+|  4 | Harshita | tech       | gh@gmail.com     | 3467678123  |
+|  5 | Ravi     | it         | ravi@gmail.com   | 6437676767  |
+|  6 | Sumit    | tech       | sumit@ghj        | 5436546     |
+|  7 | Animesh  | it         | ani@gmail.com    | 53454123    |
+|  8 | Pankaj   | hr         | degwrg@gmail.com | 3657634785  |
+|  9 | Saheer   | Tech       | saheer@gmail.com | 3243546123  |
+| 10 | Varsha   | it         | df@fg            | 85904695    |
+| 11 | Anant    | tech       | anant@ghj        | 5476546     |
+| 12 | Jayash   | tech       | jayash@ghj       | 5476546123  |
+| 13 | Karan    | hr         | jayash@yahoo.com | 7476546123  |
++----+----------+------------+------------------+-------------+
+13 rows in set (0.00 sec)
+
+mysql> select *from employees where name LIKE 's%' AND phone Like '%789';
++----+------+------------+------------+-------------+
+| id | name | department | email      | phone       |
++----+------+------------+------------+-------------+
+| 16 | Sana | Sales      | fdghf@ergt | 95677435789 |
++----+------+------------+------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select *from employees where name LIKE 's%' AND email Like '%outlook%';
++----+------+------------+--------------+-------------+
+| id | name | department | email        | phone       |
++----+------+------------+--------------+-------------+
+| 15 | Siya | hr         | siya@outlook | 95676546123 |
++----+------+------------+--------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select *from employees where (department='Sales' OR department='Marketing')  AND phone Like '%789';
++----+------+------------+------------+-------------+
+| id | name | department | email      | phone       |
++----+------+------------+------------+-------------+
+| 16 | Sana | Sales      | fdghf@ergt | 95677435789 |
++----+------+------------+------------+-------------+
+1 row in set (0.01 sec)
+
+mysql> desc employees;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int          | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(50)  | YES  |     | NULL    |                |
+| department | varchar(50)  | YES  |     | NULL    |                |
+| email      | varchar(100) | YES  |     | NULL    |                |
+| phone      | varchar(15)  | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.03 sec)
+
+mysql> INSERT INTO employees (name, department, email, phone)
+    -> VALUES ("ritik", "Marketing", "ritik@hotmain.com", "356246123");
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql> select * from  employees where name LIKE '%an%' AND email NOT LIKE '%hotmail%';
++----+---------+------------+------------------+-------------+
+| id | name    | department | email            | phone       |
++----+---------+------------+------------------+-------------+
+|  7 | Animesh | it         | ani@gmail.com    | 53454123    |
+|  8 | Pankaj  | hr         | degwrg@gmail.com | 3657634785  |
+| 11 | Anant   | tech       | anant@ghj        | 5476546     |
+| 13 | Karan   | hr         | jayash@yahoo.com | 7476546123  |
+| 16 | Sana    | Sales      | fdghf@ergt       | 95677435789 |
++----+---------+------------+------------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from  employees where phone LIKE '98%' OR phone LIKE '%58%';
++----+------+------------+---------------+-------------+
+| id | name | department | email         | phone       |
++----+------+------------+---------------+-------------+
+|  1 | Asha | Tech       | abc@gmail.com | 75349875897 |
++----+------+------------+---------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO employees (name, department, email, phone)
+    -> VALUES ("ritik", "Marketing", "ritik@hotmain.com", "356246123");
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+
+
+

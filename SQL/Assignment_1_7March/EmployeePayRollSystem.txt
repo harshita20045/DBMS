@@ -1,0 +1,117 @@
+mysql> show Databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+12 rows in set (0.10 sec)
+
+mysql> create database Assignment1;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> use Assignment1;
+Database changed
+
+mysql> create table employee( emp_id int ,name varchar(10),department varchar(10),salary float,hire_date date);
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> desc employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int         | YES  |     | NULL    |       |
+| name       | varchar(10) | YES  |     | NULL    |       |
+| department | varchar(10) | YES  |     | NULL    |       |
+| salary     | float       | YES  |     | NULL    |       |
+| hire_date  | date        | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> insert into employee values(1, 'Raj', 'IT', 50000, '2025-02-12');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into employee values(2, 'Mihir', 'HR', 90000, '2025-02-10');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(2, 'Kajal', 'Developer', 40000, '2025-09-10');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(3, 'Micha Scot', 'Developer', 60000, '2020-09-10');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(4, 'Sagar', 'Developer', 100000, '2019-09-10');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++--------+------------+------------+--------+------------+
+| emp_id | name       | department | salary | hire_date  |
++--------+------------+------------+--------+------------+
+|      1 | Raj        | IT         |  50000 | 2025-02-12 |
+|      2 | Mihir      | HR         |  90000 | 2025-02-10 |
+|      2 | Kajal      | Developer  |  40000 | 2025-09-10 |
+|      3 | Micha Scot | Developer  |  60000 | 2020-09-10 |
+|      4 | Sagar      | Developer  | 100000 | 2019-09-10 |
++--------+------------+------------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set salary=salary*(10/100) where hire_date <'2021-01-01';
+Query OK, 2 rows affected (0.03 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee;
++--------+------------+------------+--------+------------+
+| emp_id | name       | department | salary | hire_date  |
++--------+------------+------------+--------+------------+
+|      1 | Raj        | IT         |  50000 | 2025-02-12 |
+|      2 | Mihir      | HR         |  90000 | 2025-02-10 |
+|      2 | Kajal      | Developer  |  40000 | 2025-09-10 |
+|      3 | Micha Scot | Developer  |   6000 | 2020-09-10 |
+|      4 | Sagar      | Developer  |  10000 | 2019-09-10 |
++--------+------------+------------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set salary=salary +salary*(10/100) where hire_date <'2021-01-01';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee;
++--------+------------+------------+--------+------------+
+| emp_id | name       | department | salary | hire_date  |
++--------+------------+------------+--------+------------+
+|      1 | Raj        | IT         |  50000 | 2025-02-12 |
+|      2 | Mihir      | HR         |  90000 | 2025-02-10 |
+|      2 | Kajal      | Developer  |  40000 | 2025-09-10 |
+|      3 | Micha Scot | Developer  |   6600 | 2020-09-10 |
+|      4 | Sagar      | Developer  |  11000 | 2019-09-10 |
++--------+------------+------------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set department='HR' where name='Micha Scot';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++--------+------------+------------+--------+------------+
+| emp_id | name       | department | salary | hire_date  |
++--------+------------+------------+--------+------------+
+|      1 | Raj        | IT         |  50000 | 2025-02-12 |
+|      2 | Mihir      | HR         |  90000 | 2025-02-10 |
+|      2 | Kajal      | Developer  |  40000 | 2025-09-10 |
+|      3 | Micha Scot | HR         |   6600 | 2020-09-10 |
+|      4 | Sagar      | Developer  |  11000 | 2019-09-10 |
++--------+------------+------------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql>

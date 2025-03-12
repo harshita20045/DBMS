@@ -1,0 +1,112 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+15 rows in set (0.00 sec)
+
+mysql> use assignment2;
+Database changed
+mysql> select * from employee where age IN(25,30,35,40,45);
++----+----------+------+----------+------------+
+| id | name     | age  | salary   | department |
++----+----------+------+----------+------------+
+|  1 | Abhishek |   25 | 20000.00 | Sales      |
+|  3 | Mihir    |   30 | 30000.00 | HR         |
+| 13 | Raj      |   30 | 28000.00 | HR         |
++----+----------+------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where salary IN(30000,50000,70000,1000000);
++----+----------+------+----------+------------+
+| id | name     | age  | salary   | department |
++----+----------+------+----------+------------+
+|  2 | Bhoomika |   21 | 50000.00 | Tech       |
+|  3 | Mihir    |   30 | 30000.00 | HR         |
++----+----------+------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where department IN('IT','HR','Sales');
++----+----------+------+----------+------------+
+| id | name     | age  | salary   | department |
++----+----------+------+----------+------------+
+|  1 | Abhishek |   25 | 20000.00 | Sales      |
+|  3 | Mihir    |   30 | 30000.00 | HR         |
+|  6 | Kartik   |   46 | 23000.00 | IT         |
+|  7 | Kartik   |   46 | 32000.00 | Sales      |
+|  8 | Sarthak  |   39 | 82000.00 | IT         |
+| 11 | Aryan    |   27 | 80000.00 | IT         |
+| 12 | Ram      |   29 | 20000.00 | HR         |
+| 13 | Raj      |   30 | 28000.00 | HR         |
++----+----------+------+----------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employee where age NOT IN(22,25,28,30);
++----+-----------+------+----------+------------+
+| id | name      | age  | salary   | department |
++----+-----------+------+----------+------------+
+|  2 | Bhoomika  |   21 | 50000.00 | Tech       |
+|  4 | Nikhil    |   29 | 49000.00 | Marketing  |
+|  5 | Siddharth |   23 | 90000.00 | Marketing  |
+|  6 | Kartik    |   46 | 23000.00 | IT         |
+|  7 | Kartik    |   46 | 32000.00 | Sales      |
+|  8 | Sarthak   |   39 | 82000.00 | IT         |
+|  9 | Meher     |   43 | 38000.00 | Marketing  |
+| 10 | Krish     |   43 | 38000.00 | Marketing  |
+| 11 | Aryan     |   27 | 80000.00 | IT         |
+| 12 | Ram       |   29 | 20000.00 | HR         |
++----+-----------+------+----------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee where salary NOT IN(45000,60000,75000);
++----+-----------+------+----------+------------+
+| id | name      | age  | salary   | department |
++----+-----------+------+----------+------------+
+|  1 | Abhishek  |   25 | 20000.00 | Sales      |
+|  2 | Bhoomika  |   21 | 50000.00 | Tech       |
+|  3 | Mihir     |   30 | 30000.00 | HR         |
+|  4 | Nikhil    |   29 | 49000.00 | Marketing  |
+|  5 | Siddharth |   23 | 90000.00 | Marketing  |
+|  6 | Kartik    |   46 | 23000.00 | IT         |
+|  7 | Kartik    |   46 | 32000.00 | Sales      |
+|  8 | Sarthak   |   39 | 82000.00 | IT         |
+|  9 | Meher     |   43 | 38000.00 | Marketing  |
+| 10 | Krish     |   43 | 38000.00 | Marketing  |
+| 11 | Aryan     |   27 | 80000.00 | IT         |
+| 12 | Ram       |   29 | 20000.00 | HR         |
+| 13 | Raj       |   30 | 28000.00 | HR         |
++----+-----------+------+----------+------------+
+13 rows in set (0.00 sec)
+
+mysql> select * from employee where department NOT IN('Marketing','Finance');
++----+----------+------+----------+------------+
+| id | name     | age  | salary   | department |
++----+----------+------+----------+------------+
+|  1 | Abhishek |   25 | 20000.00 | Sales      |
+|  2 | Bhoomika |   21 | 50000.00 | Tech       |
+|  3 | Mihir    |   30 | 30000.00 | HR         |
+|  6 | Kartik   |   46 | 23000.00 | IT         |
+|  7 | Kartik   |   46 | 32000.00 | Sales      |
+|  8 | Sarthak  |   39 | 82000.00 | IT         |
+| 11 | Aryan    |   27 | 80000.00 | IT         |
+| 12 | Ram      |   29 | 20000.00 | HR         |
+| 13 | Raj      |   30 | 28000.00 | HR         |
++----+----------+------+----------+------------+
+9 rows in set (0.00 sec)
+
+mysql>

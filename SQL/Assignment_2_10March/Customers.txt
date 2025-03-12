@@ -1,0 +1,170 @@
+mysql> shoe databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'shoe databases' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+15 rows in set (0.00 sec)
+
+mysql> use assignment2;;
+Database changed
+ERROR:
+No query specified
+
+mysql> use assignment2;;
+Database changed
+ERROR:
+No query specified
+
+mysql> use assignment2;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment2 |
++-----------------------+
+| employee              |
+| employees             |
+| orders                |
++-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> create table customers(customer_id INT PRIMARY KEY AUTO_INCREMENT ,customer_name VARCHAR(50),city VARCHAR(50),membership_type VARCHAR(20));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("","","");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("Alice","New York","Silver");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("Enna","Chicago","Gold");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("Aliza","Chicago","Silver");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("Michael","Los Angeles","Platinum");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("John","Los Angeles","Platinum");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("Harry","Los Angeles","Gold");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("Nishank","New York","Gold");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("Nishi","Paris","Platinum");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("Neil","New Yor","Silver");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers(customer_name,city,membership_type) values("Naina","New York","Silver");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> selest * from customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selest * from customers' at line 1
+mysql> select * from customers;
++-------------+---------------+-------------+-----------------+
+| customer_id | customer_name | city        | membership_type |
++-------------+---------------+-------------+-----------------+
+|           1 |               |             |                 |
+|           2 | Alice         | New York    | Silver          |
+|           3 | Enna          | Chicago     | Gold            |
+|           4 | Aliza         | Chicago     | Silver          |
+|           5 | Michael       | Los Angeles | Platinum        |
+|           6 | John          | Los Angeles | Platinum        |
+|           7 | Harry         | Los Angeles | Gold            |
+|           8 | Nishank       | New York    | Gold            |
+|           9 | Nishi         | Paris       | Platinum        |
+|          10 | Neil          | New Yor     | Silver          |
+|          11 | Naina         | New York    | Silver          |
++-------------+---------------+-------------+-----------------+
+11 rows in set (0.00 sec)
+
+mysql> delete customers where city="New Yor";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where city="New Yor"' at line 1
+mysql> delete from customers where city="New Yor";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from customers;
++-------------+---------------+-------------+-----------------+
+| customer_id | customer_name | city        | membership_type |
++-------------+---------------+-------------+-----------------+
+|           1 |               |             |                 |
+|           2 | Alice         | New York    | Silver          |
+|           3 | Enna          | Chicago     | Gold            |
+|           4 | Aliza         | Chicago     | Silver          |
+|           5 | Michael       | Los Angeles | Platinum        |
+|           6 | John          | Los Angeles | Platinum        |
+|           7 | Harry         | Los Angeles | Gold            |
+|           8 | Nishank       | New York    | Gold            |
+|           9 | Nishi         | Paris       | Platinum        |
+|          11 | Naina         | New York    | Silver          |
++-------------+---------------+-------------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from customers where city  IN ('New York', 'Los Angeles', 'Chicago');
++-------------+---------------+-------------+-----------------+
+| customer_id | customer_name | city        | membership_type |
++-------------+---------------+-------------+-----------------+
+|           2 | Alice         | New York    | Silver          |
+|           3 | Enna          | Chicago     | Gold            |
+|           4 | Aliza         | Chicago     | Silver          |
+|           5 | Michael       | Los Angeles | Platinum        |
+|           6 | John          | Los Angeles | Platinum        |
+|           7 | Harry         | Los Angeles | Gold            |
+|           8 | Nishank       | New York    | Gold            |
+|          11 | Naina         | New York    | Silver          |
++-------------+---------------+-------------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from customers where membership_type IN ('Gold', 'Platinum', 'Silver').
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.' at line 1
+mysql> select * from customers where membership_type IN ('Gold', 'Platinum', 'Silver');
++-------------+---------------+-------------+-----------------+
+| customer_id | customer_name | city        | membership_type |
++-------------+---------------+-------------+-----------------+
+|           2 | Alice         | New York    | Silver          |
+|           3 | Enna          | Chicago     | Gold            |
+|           4 | Aliza         | Chicago     | Silver          |
+|           5 | Michael       | Los Angeles | Platinum        |
+|           6 | John          | Los Angeles | Platinum        |
+|           7 | Harry         | Los Angeles | Gold            |
+|           8 | Nishank       | New York    | Gold            |
+|           9 | Nishi         | Paris       | Platinum        |
+|          11 | Naina         | New York    | Silver          |
++-------------+---------------+-------------+-----------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from customers where customer_name ^C
+mysql> select * from customers where customer_name IN ('Alice', 'John', 'Michael');
++-------------+---------------+-------------+-----------------+
+| customer_id | customer_name | city        | membership_type |
++-------------+---------------+-------------+-----------------+
+|           2 | Alice         | New York    | Silver          |
+|           5 | Michael       | Los Angeles | Platinum        |
+|           6 | John          | Los Angeles | Platinum        |
++-------------+---------------+-------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql>

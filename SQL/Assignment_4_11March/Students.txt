@@ -1,0 +1,92 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| assignment3        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+16 rows in set (0.00 sec)
+
+mysql> create database assignment4;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| assignment3        |
+| assignment4        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+17 rows in set (0.00 sec)
+
+mysql> use assignment4;
+Database changed
+mysql> create table Students(studentId INT PRIMARY KEY ,name VARCHAR(50) NOT NULL, age INT check( age BETWEEN 18 AND 25),marks decimal (5,2) check(marks BETWEEN 0 AND 100));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc assignment4;
+ERROR 1146 (42S02): Table 'assignment4.assignment4' doesn't exist
+mysql> desc Students;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| studentId | int          | NO   | PRI | NULL    |       |
+| name      | varchar(50)  | NO   |     | NULL    |       |
+| age       | int          | YES  |     | NULL    |       |
+| marks     | decimal(5,2) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into Students(studentId,name,age,marks)VALUES(101,'harshita',20,85.5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Students(studentId,name,age,marks)VALUES(102,'aashita',17,90.0);
+ERROR 3819 (HY000): Check constraint 'students_chk_1' is violated.
+mysql> insert into Students(studentId,name,age,marks)VALUES(102,'aashita',20,90.0);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into Students(studentId,name,age,marks)VALUES(103,'Vedika',22,105);
+ERROR 3819 (HY000): Check constraint 'students_chk_2' is violated.
+mysql> insert into Students(studentId,name,age,marks)VALUES(104,'Nikita',24,75);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from Students;
++-----------+----------+------+-------+
+| studentId | name     | age  | marks |
++-----------+----------+------+-------+
+|       101 | harshita |   20 | 85.50 |
+|       102 | aashita  |   20 | 90.00 |
+|       104 | Nikita   |   24 | 75.00 |
++-----------+----------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,40 @@
+mysql> CREATE TABLE members (    member_id INT ,    name VARCHAR(50),    membership_type VARCHAR(50),    fees_paid DECIMAL(10,2),    joining_date DATE);
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> INSERT INTO members VALUES(1, 'Nisha', 'Gold', 500, '2023-01-10'),(2, 'Nikki', 'Silver', 300, '2022-05-15'),(3, 'Sophia Martinez', 'Gold', 550, '2021-08-20'),(4, 'Naina', 'Platinum', 800, '2023-07-25'),(5, 'Nihar', 'Gold', 600, '2020-12-30');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> update members set fees_paid=fees_paid+50  where membership_type='Gold';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from members;
++-----------+-----------------+-----------------+-----------+--------------+
+| member_id | name            | membership_type | fees_paid | joining_date |
++-----------+-----------------+-----------------+-----------+--------------+
+|         1 | Nisha           | Gold            |    550.00 | 2023-01-10   |
+|         2 | Nikki           | Silver          |    300.00 | 2022-05-15   |
+|         3 | Sophia Martinez | Gold            |    600.00 | 2021-08-20   |
+|         4 | Naina           | Platinum        |    800.00 | 2023-07-25   |
+|         5 | Nihar           | Gold            |    650.00 | 2020-12-30   |
++-----------+-----------------+-----------------+-----------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> update members set joining_date='2024-04-01'  where name='Sophia Martinez';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from members;
++-----------+-----------------+-----------------+-----------+--------------+
+| member_id | name            | membership_type | fees_paid | joining_date |
++-----------+-----------------+-----------------+-----------+--------------+
+|         1 | Nisha           | Gold            |    550.00 | 2023-01-10   |
+|         2 | Nikki           | Silver          |    300.00 | 2022-05-15   |
+|         3 | Sophia Martinez | Gold            |    600.00 | 2024-04-01   |
+|         4 | Naina           | Platinum        |    800.00 | 2023-07-25   |
+|         5 | Nihar           | Gold            |    650.00 | 2020-12-30   |
++-----------+-----------------+-----------------+-----------+--------------+
+5 rows in set (0.00 sec)
+
+mysql>

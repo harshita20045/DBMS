@@ -1,0 +1,51 @@
+mysql> create table products (    product_id INT ,    name VARCHAR(50),    category VARCHAR(50),    price DECIMAL(10,2),    stock INT);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into products values(1, 'Mobile', 'Electronics', 10000, 80);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into products values(2, 'Laptop', 'Electronics', 70000, 90);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into products values(3, 'Top', 'Fashion', 7000, 30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into products values(4, 'Suit', 'Fashion', 700, 39);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into products values(5, 'Shirt', 'Fashion', 900, 99);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> update products set stock=stock-10 where category='Electronics';
+Query OK, 2 rows affected (0.72 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from products;
++------------+--------+-------------+----------+-------+
+| product_id | name   | category    | price    | stock |
++------------+--------+-------------+----------+-------+
+|          1 | Mobile | Electronics | 10000.00 |    70 |
+|          2 | Laptop | Electronics | 70000.00 |    80 |
+|          3 | Top    | Fashion     |  7000.00 |    30 |
+|          4 | Suit   | Fashion     |   700.00 |    39 |
+|          5 | Shirt  | Fashion     |   900.00 |    99 |
++------------+--------+-------------+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update products set price=price+(price*(10/100)) where category='Fashion';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from products;
++------------+--------+-------------+----------+-------+
+| product_id | name   | category    | price    | stock |
++------------+--------+-------------+----------+-------+
+|          1 | Mobile | Electronics | 10000.00 |    70 |
+|          2 | Laptop | Electronics | 70000.00 |    80 |
+|          3 | Top    | Fashion     |  7700.00 |    30 |
+|          4 | Suit   | Fashion     |   770.00 |    39 |
+|          5 | Shirt  | Fashion     |   990.00 |    99 |
++------------+--------+-------------+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql>

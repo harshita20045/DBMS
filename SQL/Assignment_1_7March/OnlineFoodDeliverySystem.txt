@@ -1,0 +1,63 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+14 rows in set (0.00 sec)
+
+mysql> use assignment1;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment1 |
++-----------------------+
+| customers             |
+| employee              |
+| members               |
+| orders                |
+| products              |
+| students              |
++-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----------+---------------+-----------+-------+--------------+
+| order_id | customer_name | food_item | price | order_status |
++----------+---------------+-----------+-------+--------------+
+|        1 | Sizuka        | Pizza     | 13.20 | Pending      |
+|        2 | Nika          | Burger    |  8.00 | Processing   |
+|        3 | Mika          | Pizza     | 16.50 | Pending      |
+|        4 | Shikha        | Pasta     | 10.00 | Delivered    |
+|        5 | David Wilson  | Sandwich  |  6.00 | Delivered    |
++----------+---------------+-----------+-------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> update orders set price=price+(price*(10/100)) where food_item="pizza";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from orders;
++----------+---------------+-----------+-------+--------------+
+| order_id | customer_name | food_item | price | order_status |
++----------+---------------+-----------+-------+--------------+
+|        1 | Sizuka        | Pizza     | 14.52 | Pending      |
+|        2 | Nika          | Burger    |  8.00 | Processing   |
+|        3 | Mika          | Pizza     | 18.15 | Pending      |
+|        4 | Shikha        | Pasta     | 10.00 | Delivered    |
+|        5 | David Wilson  | Sandwich  |  6.00 | Delivered    |
++----------+---------------+-----------+-------+--------------+
+5 rows in set (0.00 sec)

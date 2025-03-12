@@ -1,0 +1,179 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+15 rows in set (0.00 sec)
+
+mysql> use assignment2;
+Database changed
+mysql> create table employee(int id PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50),age INT,salary DECIMAL(10,2),department VARCHAR(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int id PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50),age INT,salary DECIMAL(10,2)' at line 1
+mysql> create table employee(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50),age INT,salary DECIMAL(10,2),department VARCHAR(50));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc employee;
++------------+---------------+------+-----+---------+----------------+
+| Field      | Type          | Null | Key | Default | Extra          |
++------------+---------------+------+-----+---------+----------------+
+| id         | int           | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(50)   | YES  |     | NULL    |                |
+| age        | int           | YES  |     | NULL    |                |
+| salary     | decimal(10,2) | YES  |     | NULL    |                |
+| department | varchar(50)   | YES  |     | NULL    |                |
++------------+---------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into orders(name,age,salary,department) values("Abhishek",25,20000,"Sales");
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> insert into employee(name,age,salary,department) values("Abhishek",25,20000,"Sales");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Bhoomika",21,50000,"Tech");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Mihir",30,30000,"HR");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Nikhil",29,49000,"Marketing"); ng");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Siddharth",23,90000,"Marketing");
+Query OK, 1 row affected (0.36 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Kartik",23000,"IT");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee(name,age,salary,department) values("Kartik",46,23000,"IT");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Kartik",46,32000,"Sales");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Sarthak",39,82000,"IT");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Meher",43,38000,"Marketing");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Krish",43,38000,"Marketing");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Aryan",27,80000,"IT");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Ram",29,20000,"HR");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,age,salary,department) values("Raj",30,28000,"HR");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----+-----------+------+----------+------------+
+| id | name      | age  | salary   | department |
++----+-----------+------+----------+------------+
+|  1 | Abhishek  |   25 | 20000.00 | Sales      |
+|  2 | Bhoomika  |   21 | 50000.00 | Tech       |
+|  3 | Mihir     |   30 | 30000.00 | HR         |
+|  4 | Nikhil    |   29 | 49000.00 | Marketing  |
+|  5 | Siddharth |   23 | 90000.00 | Marketing  |
+|  6 | Kartik    |   46 | 23000.00 | IT         |
+|  7 | Kartik    |   46 | 32000.00 | Sales      |
+|  8 | Sarthak   |   39 | 82000.00 | IT         |
+|  9 | Meher     |   43 | 38000.00 | Marketing  |
+| 10 | Krish     |   43 | 38000.00 | Marketing  |
+| 11 | Aryan     |   27 | 80000.00 | IT         |
+| 12 | Ram       |   29 | 20000.00 | HR         |
+| 13 | Raj       |   30 | 28000.00 | HR         |
++----+-----------+------+----------+------------+
+13 rows in set (0.00 sec)
+
+mysql> select * from  employee where age BETWEEN 25 AND 40;
++----+----------+------+----------+------------+
+| id | name     | age  | salary   | department |
++----+----------+------+----------+------------+
+|  1 | Abhishek |   25 | 20000.00 | Sales      |
+|  3 | Mihir    |   30 | 30000.00 | HR         |
+|  4 | Nikhil   |   29 | 49000.00 | Marketing  |
+|  8 | Sarthak  |   39 | 82000.00 | IT         |
+| 11 | Aryan    |   27 | 80000.00 | IT         |
+| 12 | Ram      |   29 | 20000.00 | HR         |
+| 13 | Raj      |   30 | 28000.00 | HR         |
++----+----------+------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from  employee where salary BETWEEN 30000 AND 80000;
++----+----------+------+----------+------------+
+| id | name     | age  | salary   | department |
++----+----------+------+----------+------------+
+|  2 | Bhoomika |   21 | 50000.00 | Tech       |
+|  3 | Mihir    |   30 | 30000.00 | HR         |
+|  4 | Nikhil   |   29 | 49000.00 | Marketing  |
+|  7 | Kartik   |   46 | 32000.00 | Sales      |
+|  9 | Meher    |   43 | 38000.00 | Marketing  |
+| 10 | Krish    |   43 | 38000.00 | Marketing  |
+| 11 | Aryan    |   27 | 80000.00 | IT         |
++----+----------+------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from  employee where (age BETWEEN 30 AND 50) AND (department ="IT") ;
++----+---------+------+----------+------------+
+| id | name    | age  | salary   | department |
++----+---------+------+----------+------------+
+|  6 | Kartik  |   46 | 23000.00 | IT         |
+|  8 | Sarthak |   39 | 82000.00 | IT         |
++----+---------+------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from  employee where (salary BETWEEN 40000 AND 90000) AND (age BETWEEN 30 AND 50) ;
++----+---------+------+----------+------------+
+| id | name    | age  | salary   | department |
++----+---------+------+----------+------------+
+|  8 | Sarthak |   39 | 82000.00 | IT         |
++----+---------+------+----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from  employee where salary NOT  BETWEEN 25000 AND 60000 ;
++----+-----------+------+----------+------------+
+| id | name      | age  | salary   | department |
++----+-----------+------+----------+------------+
+|  1 | Abhishek  |   25 | 20000.00 | Sales      |
+|  5 | Siddharth |   23 | 90000.00 | Marketing  |
+|  6 | Kartik    |   46 | 23000.00 | IT         |
+|  8 | Sarthak   |   39 | 82000.00 | IT         |
+| 11 | Aryan     |   27 | 80000.00 | IT         |
+| 12 | Ram       |   29 | 20000.00 | HR         |
++----+-----------+------+----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from  employee where (salary BETWEEN 50000 AND 100000) OR (age BETWEEN 22 AND 35) ;
++----+-----------+------+----------+------------+
+| id | name      | age  | salary   | department |
++----+-----------+------+----------+------------+
+|  1 | Abhishek  |   25 | 20000.00 | Sales      |
+|  2 | Bhoomika  |   21 | 50000.00 | Tech       |
+|  3 | Mihir     |   30 | 30000.00 | HR         |
+|  4 | Nikhil    |   29 | 49000.00 | Marketing  |
+|  5 | Siddharth |   23 | 90000.00 | Marketing  |
+|  8 | Sarthak   |   39 | 82000.00 | IT         |
+| 11 | Aryan     |   27 | 80000.00 | IT         |
+| 12 | Ram       |   29 | 20000.00 | HR         |
+| 13 | Raj       |   30 | 28000.00 | HR         |
++----+-----------+------+----------+------------+
+9 rows in set (0.00 sec)
+
+mysql> s

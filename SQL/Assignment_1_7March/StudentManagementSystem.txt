@@ -1,0 +1,61 @@
+mysql> create table students (    student_id INT ,    name VARCHAR(50),    department VARCHAR(50),    marks INT,    admission_year INT);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from students;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO students VALUES(1, 'Aasha', 'Computer Science', 85, 2021),(2, 'Bob', 'AI', 78, 2022),(3, 'Chaya', 'Computer Science', 90, 2020),(4, 'Disha', 'ME', 82, 2023),(5, 'Eshika', 'IT', 88, 2022);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++------------+--------+------------------+-------+----------------+
+| student_id | name   | department       | marks | admission_year |
++------------+--------+------------------+-------+----------------+
+|          1 | Aasha  | Computer Science |    85 |           2021 |
+|          2 | Bob    | AI               |    78 |           2022 |
+|          3 | Chaya  | Computer Science |    90 |           2020 |
+|          4 | Disha  | ME               |    82 |           2023 |
+|          5 | Eshika | IT               |    88 |           2022 |
++------------+--------+------------------+-------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> update customers set marka=marks+5 where department='Computer Science';
+ERROR 1054 (42S22): Unknown column 'department' in 'where clause'
+mysql> update students set marka=marks+5 where department='Computer Science';
+ERROR 1054 (42S22): Unknown column 'marka' in 'field list'
+mysql> update students set marks=marks+5 where department='Computer Science';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from students;
++------------+--------+------------------+-------+----------------+
+| student_id | name   | department       | marks | admission_year |
++------------+--------+------------------+-------+----------------+
+|          1 | Aasha  | Computer Science |    90 |           2021 |
+|          2 | Bob    | AI               |    78 |           2022 |
+|          3 | Chaya  | Computer Science |    95 |           2020 |
+|          4 | Disha  | ME               |    82 |           2023 |
+|          5 | Eshika | IT               |    88 |           2022 |
++------------+--------+------------------+-------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> update customers set admission_year=2023 where name='Bob';
+ERROR 1054 (42S22): Unknown column 'admission_year' in 'field list'
+mysql> update students set admission_year=2023 where name='Bob';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++------------+--------+------------------+-------+----------------+
+| student_id | name   | department       | marks | admission_year |
++------------+--------+------------------+-------+----------------+
+|          1 | Aasha  | Computer Science |    90 |           2021 |
+|          2 | Bob    | AI               |    78 |           2023 |
+|          3 | Chaya  | Computer Science |    95 |           2020 |
+|          4 | Disha  | ME               |    82 |           2023 |
+|          5 | Eshika | IT               |    88 |           2022 |
++------------+--------+------------------+-------+----------------+
+5 rows in set (0.00 sec)
+
+mysql>

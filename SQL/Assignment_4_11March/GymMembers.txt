@@ -1,0 +1,60 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| assignment3        |
+| assignment4        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+17 rows in set (0.00 sec)
+
+mysql> use assignment4;
+Database changed
+mysql> create table GymMembers(memberId INT PRIMARY KEY ,memberName VARCHAR(50) NOT NULL, membershipType VARCHAR(15) DEFAULT 'Basic' check(membershipType IN('Basic','Premium','VIP')),monthlyFee DECIMAL(6,2) check(monthlyFee >=500));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc GymMembers;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| memberId       | int          | NO   | PRI | NULL    |       |
+| memberName     | varchar(50)  | NO   |     | NULL    |       |
+| membershipType | varchar(15)  | YES  |     | Basic   |       |
+| monthlyFee     | decimal(6,2) | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into GymMembers (memberId,memberName,membershipType,monthlyFee)VALUES(501,'Karan','Premium',1200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into GymMembers (memberId,memberName,membershipType,monthlyFee)VALUES(502,'Harshita','Gold',800);
+ERROR 3819 (HY000): Check constraint 'gymmembers_chk_1' is violated.
+mysql> insert into GymMembers (memberId,memberName,monthlyFee)VALUES(503,'Nayan',700);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from GymMembers;
++----------+------------+----------------+------------+
+| memberId | memberName | membershipType | monthlyFee |
++----------+------------+----------------+------------+
+|      501 | Karan      | Premium        |    1200.00 |
+|      503 | Nayan      | Basic          |     700.00 |
++----------+------------+----------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into GymMembers (memberId,memberName,membershipType,monthlyFee)VALUES(504,'Sana','VIP',300);
+ERROR 3819 (HY000): Check constraint 'gymmembers_chk_2' is violated.
+mysql>

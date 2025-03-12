@@ -1,0 +1,281 @@
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| assignment2        |
+| assignment3        |
+| college            |
+| e_commerce         |
+| hi                 |
+| information_schema |
+| mysql              |
+| parties            |
+| performance_schema |
+| practice1          |
+| sys                |
+| visa               |
+| visaaa             |
+| visaaaa            |
+| visamini           |
++--------------------+
+16 rows in set (0.00 sec)
+
+mysql> use assignment3;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_assignment3 |
++-----------------------+
+| employee              |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> create table students(student_id INT PRIMARY KEY AUTO_INCREMENT ,name VARCHAR(50),class INT,subject VARCHAR(20),marks DOUBLE(10,2),exam_date DATE);
+Query OK, 0 rows affected, 1 warning (0.07 sec)
+
+mysql> desc students;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| student_id | int          | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(50)  | YES  |     | NULL    |                |
+| class      | int          | YES  |     | NULL    |                |
+| subject    | varchar(20)  | YES  |     | NULL    |                |
+| marks      | double(10,2) | YES  |     | NULL    |                |
+| exam_date  | date         | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into students (name,class,subjects,marks,exam_date)VALUES("Aashita",12,"Math",80,'2024-01-01'),("Nikhil",89,"Science",45,'2024-11-09'),("Nikita",12,"English",89,'2024-01-17'),("Aamna",9,"Science",88,'2024-02-08'),("Aakrati",8,"English",78,'2024-07-09'),("Mohit",10,"Hindi",80,'2024-11-01'),("Karan",10,"Math",65,'2024-12-23'),("Aasha",12,"Math",78,'2024-08-12'),("Kavya",9,"English",75,'2024-10-19'),("Harshita",11,"Hindi",30,'2024-03-06');
+ERROR 1054 (42S22): Unknown column 'subjects' in 'field list'
+mysql> insert into students (name,class,subjects,marks,exam_date)VALUES("Aashita",12,"Math",80,'2024-01-01'),("Nikhil",89,"Science",45,'2024-11-09'),("Nikita",12,"English",89,'2024-01-17'),("Aamna",9,"Science",88,'2024-02-08'),("Aakrati",8,"English",78,'2024-07-09'),("Mohit",10,"Hindi",80,'2024-11-01'),("Karan",10,"Math",65,'2024-12-23'),("Aasha",12,"Math",78,'2024-08-12'),("Kavya",9,"English",75,'2024-10-19'),("Harshita",11,"Hindi",30,'2024-03-06');
+ERROR 1054 (42S22): Unknown column 'subjects' in 'field list'
+mysql> mysql> insert into students (name,class,subjects,marks,exam_date)VALUES("Aashita",12,"Math",80,'2024-01-01'),("Nikhil",89,"Science",45,'2024-11-09'),("Nikita",12,"English",89,'2024-01-17'),("Aamna",9,"Science",88,'2024-02-08'),("Aakrati",8,"English",78,'2024-07-09'),("Mohit",10,"Hindi",80,'2024-11-01'),("Karan",10,"Math",65,'2024-12-23'),("Aasha",12,"Math",78,'2024-08-12'),("Kavya",9,"English",75,'2024-10-19'),("Harshita",11,"Hindi",30,'2024-03-06');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> insert into students (name,class,subjects,marks,exam_date)VALUES("Aashita' at line 1
+mysql> mysql> insert into students (name,class,subject,marks,exam_date)VALUES("Aashita",12,"Math",80,'2024-01-01'),("Nikhil",89,"Science",45,'2024-11-09'),("Nikita",12,"English",89,'2024-01-17'),("Aamna",9,"Science",88,'2024-02-08'),("Aakrati",8,"English",78,'2024-07-09'),("Mohit",10,"Hindi",80,'2024-11-01'),("Karan",10,"Math",65,'2024-12-23'),("Aasha",12,"Math",78,'2024-08-12'),("Kavya",9,"English",75,'2024-10-19'),("Harshita",11,"Hindi",30,'2024-03-06');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> insert into students (name,class,subject,marks,exam_date)VALUES("Aashita"' at line 1
+mysql> INSERT INTO students (name, class, subject, marks, exam_date)
+    -> VALUES
+    -> ("Aashita", 12, "Math", 80, '2024-01-01'),
+    -> ("Nikhil", 89, "Science", 45, '2024-11-09'),
+    -> ("Nikita", 12, "English", 89, '2024-01-17'),
+    -> ("Aamna", 9, "Science", 88, '2024-02-08'),
+    -> ("Aakrati", 8, "English", 78, '2024-07-09'),
+    -> ("Mohit", 10, "Hindi", 80, '2024-11-01'),
+    -> ("Karan", 10, "Math", 65, '2024-12-23'),
+    -> ("Aasha", 12, "Math", 78, '2024-08-12'),
+    -> ("Kavya", 9, "English", 75, '2024-10-19'),
+    -> ("Harshita", 11, "Hindi", 30, '2024-03-06');
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select*from students;
++------------+----------+-------+---------+-------+------------+
+| student_id | name     | class | subject | marks | exam_date  |
++------------+----------+-------+---------+-------+------------+
+|          1 | Aashita  |    12 | Math    | 80.00 | 2024-01-01 |
+|          2 | Nikhil   |    89 | Science | 45.00 | 2024-11-09 |
+|          3 | Nikita   |    12 | English | 89.00 | 2024-01-17 |
+|          4 | Aamna    |     9 | Science | 88.00 | 2024-02-08 |
+|          5 | Aakrati  |     8 | English | 78.00 | 2024-07-09 |
+|          6 | Mohit    |    10 | Hindi   | 80.00 | 2024-11-01 |
+|          7 | Karan    |    10 | Math    | 65.00 | 2024-12-23 |
+|          8 | Aasha    |    12 | Math    | 78.00 | 2024-08-12 |
+|          9 | Kavya    |     9 | English | 75.00 | 2024-10-19 |
+|         10 | Harshita |    11 | Hindi   | 30.00 | 2024-03-06 |
++------------+----------+-------+---------+-------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select class ,count(*) as CLASS from students group by class;
++-------+-------+
+| class | CLASS |
++-------+-------+
+|    12 |     3 |
+|    89 |     1 |
+|     9 |     2 |
+|     8 |     1 |
+|    10 |     2 |
+|    11 |     1 |
++-------+-------+
+6 rows in set, 1 warning (0.00 sec)
+
+mysql> select subject ,max(marks) as MARKS from students where subject='Math' group by subject;
++---------+-------+
+| subject | MARKS |
++---------+-------+
+| Math    | 80.00 |
++---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select subject ,avg(marks) as AVG_MARKS from students  group by subject;
++---------+-----------+
+| subject | AVG_MARKS |
++---------+-----------+
+| Math    | 74.333333 |
+| Science | 66.500000 |
+| English | 80.666667 |
+| Hindi   | 55.000000 |
++---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select exam_date ,count(*) as Date from students  group by exam_date;
++------------+------+
+| exam_date  | Date |
++------------+------+
+| 2024-01-01 |    1 |
+| 2024-11-09 |    1 |
+| 2024-01-17 |    1 |
+| 2024-02-08 |    1 |
+| 2024-07-09 |    1 |
+| 2024-11-01 |    1 |
+| 2024-12-23 |    1 |
+| 2024-08-12 |    1 |
+| 2024-10-19 |    1 |
+| 2024-03-06 |    1 |
++------------+------+
+10 rows in set (0.00 sec)
+
+mysql> select MONTH(exam_date) ,count(*) as Date from students  group by exam_date;
++------------------+------+
+| MONTH(exam_date) | Date |
++------------------+------+
+|                1 |    1 |
+|               11 |    1 |
+|                1 |    1 |
+|                2 |    1 |
+|                7 |    1 |
+|               11 |    1 |
+|               12 |    1 |
+|                8 |    1 |
+|               10 |    1 |
+|                3 |    1 |
++------------------+------+
+10 rows in set (0.00 sec)
+
+mysql> select MONTH(exam_date) ,count(*) as Date from students  group by Date;
+ERROR 1056 (42000): Can't group on 'Date'
+mysql> select MONTH(exam_date) as Month ,count(*) as Date from students  group by Month;
++-------+------+
+| Month | Date |
++-------+------+
+|     1 |    2 |
+|    11 |    2 |
+|     2 |    1 |
+|     7 |    1 |
+|    12 |    1 |
+|     8 |    1 |
+|    10 |    1 |
+|     3 |    1 |
++-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select subject ,max(*) as AVG from students  group by subject order by AVG desc LIMIT 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as AVG from students  group by subject order by AVG desc LIMIT 1' at line 1
+mysql> select subject ,max(marks) as AVG from students  group by subject order by AVG desc LIMIT 1;
++---------+-------+
+| subject | AVG   |
++---------+-------+
+| English | 89.00 |
++---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select subject ,avg(marks) as AVG from students  group by subject order by AVG desc LIMIT 1;
++---------+-----------+
+| subject | AVG       |
++---------+-----------+
+| English | 80.666667 |
++---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select subject ,avg(marks) as AVG from students  group by subject ;
++---------+-----------+
+| subject | AVG       |
++---------+-----------+
+| Math    | 74.333333 |
+| Science | 66.500000 |
+| English | 80.666667 |
+| Hindi   | 55.000000 |
++---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select subject ,avg(marks) as AVG from students  group by subject order by AVG desc LIMIT 1;
++---------+-----------+
+| subject | AVG       |
++---------+-----------+
+| English | 80.666667 |
++---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) from student where subject="Science";
+ERROR 1146 (42S02): Table 'assignment3.student' doesn't exist
+mysql> select min(marks) from students where subject="Science";
++------------+
+| min(marks) |
++------------+
+|      45.00 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select *, min(marks) from student where subject="Science";
+ERROR 1146 (42S02): Table 'assignment3.student' doesn't exist
+mysql> select *, min(marks) from student where subject="Science";SELECT *
+ERROR 1146 (42S02): Table 'assignment3.student' doesn't exist
+    -> FROM students
+    -> WHERE subject = 'Science'
+    -> ORDER BY marks ASC
+    -> LIMIT 1;
++------------+--------+-------+---------+-------+------------+
+| student_id | name   | class | subject | marks | exam_date  |
++------------+--------+-------+---------+-------+------------+
+|          2 | Nikhil |    89 | Science | 45.00 | 2024-11-09 |
++------------+--------+-------+---------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM students
+    -> WHERE subject = 'Science'
+    -> ORDER BY marks ASC
+    -> LIMIT 1;
++------------+--------+-------+---------+-------+------------+
+| student_id | name   | class | subject | marks | exam_date  |
++------------+--------+-------+---------+-------+------------+
+|          2 | Nikhil |    89 | Science | 45.00 | 2024-11-09 |
++------------+--------+-------+---------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select class,count(*) as COUNT from students where marks>85 group by COUNT;
+ERROR 1056 (42000): Can't group on 'COUNT'
+mysql> select class,count(*) as COUNT from students where marks>85 group by class;
++-------+-------+
+| class | COUNT |
++-------+-------+
+|    12 |     1 |
+|     9 |     1 |
++-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select subject,avg(marks) as AVG from students group by subject having AVG >80;
++---------+-----------+
+| subject | AVG       |
++---------+-----------+
+| English | 80.666667 |
++---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from students order by desc limit 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit 1' at line 1
+mysql> select * from students where marks=max(marks) order by desc LIMIT 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc LIMIT 1' at line 1
+mysql> select * from students where marks=max(marks) order by marks desc LIMIT 1;
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select * from students order by marks desc LIMIT 1;
++------------+--------+-------+---------+-------+------------+
+| student_id | name   | class | subject | marks | exam_date  |
++------------+--------+-------+---------+-------+------------+
+|          3 | Nikita |    12 | English | 89.00 | 2024-01-17 |
++------------+--------+-------+---------+-------+------------+
+1 row in set (0.00 sec)
+
